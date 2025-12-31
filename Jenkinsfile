@@ -51,7 +51,7 @@ pipeline {
                 script{
                     withAWS(region:'us-east-1',credentials:'aws-creds') {
                         sh """
-                            set -e
+                            set -ex  # <--- show errors + commands
                             echo "=== Environment variables ==="
                             echo "ACC_ID=${ACC_ID}"
                             echo "PROJECT=${PROJECT}"
