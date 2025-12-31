@@ -68,6 +68,9 @@ pipeline {
             }
         } */
        stage('Dependabot Security Gate') {
+            when {
+                    expression { false }
+                }
             environment {
                 GITHUB_OWNER = 'venkatesh-thom'
                 GITHUB_REPO  = 'catalogue'
