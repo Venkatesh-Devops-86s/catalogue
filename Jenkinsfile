@@ -51,6 +51,17 @@ pipeline {
                 script{
                     withAWS(region:'us-east-1',credentials:'aws-creds') {
                         sh """
+                            set -e
+                            echo "=== Environment variables ==="
+                            echo "ACC_ID=${ACC_ID}"
+                            echo "PROJECT=${PROJECT}"
+                            echo "COMPONENT=${COMPONENT}"
+                            echo "appVersion=${appVersion}"
+                            echo "=============================="
+
+
+                            echo "=== Logging into ECR ==="
+                            echo "=============================="
                             aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com
                             docker build -t ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com/${PROJECT}/${COMPONENT}:${appVersion} .
                             docker images
@@ -83,7 +94,7 @@ pipeline {
     post{
         always{
             echo 'I will always say Hello again!'
-            cleanWs()
+            // cleanWs()
         }
         success {
             echo 'I will run if success'
