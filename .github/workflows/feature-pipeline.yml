@@ -1,14 +1,24 @@
-name: feature-pipeline #workflow for feature deployment pipeline
+name: feature-pipeline
 on: [push]
 permissions:
     contents: read
     statuses: write
     security-events: read
 jobs:
-    feature-pipeline: # job name
-        uses: Venkatesh-Devops-86s/workflows/.github/workflows/feature-nodejs-pipeline.yml@main # path to the reusable workflow
-        with: # passing inputs to the reusable workflow
+    feature-pipeline:
+        if: github.ref != 'refs/heads/main'
+        uses: Venkatesh-Devops-86s/workflows/.github/workflows/feature-nodejs-pipeline.yaml@main
+        with:
             project: roboshop
             component: catalogue
             environment: dev
-        secrets: inherit # inherit secrets from the caller workflow
+        secrets: inherit
+
+    dev-pipeline:
+        if: github.ref == 'refs/heads/main'
+        uses: Venkatesh-Devops-86s/workflows/.github/workflows/dev-nodejs-pipeline.yaml@main
+        with:
+            project: roboshop
+            component: catalogue
+            environment: dev
+        secrets: inherit
