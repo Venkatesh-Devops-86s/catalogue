@@ -1,0 +1,12 @@
+name: featuere-pipeline # workflow for feature deployment pipeline
+on: [push]
+jobs:
+    feature-pipeline:
+        runs-on: self-hosted # specify the runner environment
+        steps:
+            - name: call re-usable workflow # step to call reusable workflow
+              uses: venkatesh-thom/workflows/.github/workflows/feature-nodejs-pipeline.yml@main # path to the reusable workflow
+              with: # passing inputs to the reusable workflow
+                  project: roboshop
+                  component: catalogue
+                  environment: dev
