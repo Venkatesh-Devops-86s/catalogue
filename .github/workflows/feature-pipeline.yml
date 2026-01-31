@@ -1,4 +1,4 @@
-name: featuere-pipeline # workflow for feature deployment pipeline
+name: feature-pipeline #workflow for feature deployment pipeline
 on: [push]
 jobs:
     feature-pipeline: # job name
