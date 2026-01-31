@@ -2,7 +2,7 @@ name: featuere-pipeline # workflow for feature deployment pipeline
 on: [push]
 jobs:
     feature-pipeline: # job name
-        uses: venkatesh-thom/workflows/.github/workflows/feature-nodejs-pipeline.yml@main # path to the reusable workflow
+        uses: Venkatesh-Devops-86s/workflows/.github/workflows/feature-nodejs-pipeline.yml@main # path to the reusable workflow
         with: # passing inputs to the reusable workflow
             project: roboshop
             component: catalogue
