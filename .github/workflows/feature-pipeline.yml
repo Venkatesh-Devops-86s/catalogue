@@ -1,5 +1,9 @@
 name: feature-pipeline #workflow for feature deployment pipeline
 on: [push]
+permissions:
+    contents: read
+    statuses: write
+    security-events: read
 jobs:
     feature-pipeline: # job name
         uses: Venkatesh-Devops-86s/workflows/.github/workflows/feature-nodejs-pipeline.yml@main # path to the reusable workflow
